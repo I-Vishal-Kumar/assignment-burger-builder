@@ -4,6 +4,7 @@
   "description": "Burger Builder Application",
   "main": "index.js",
   "scripts": {
+    "postinstall": "cd client && npm install --legacy-peer-deps",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "build": "cd client && npm run build",
     "start": "npm run build && tsx server/index.ts",
