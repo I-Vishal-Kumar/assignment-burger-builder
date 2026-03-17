@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { type SliceType, SLICE_PRICES } from "../types";
+import { type SliceType, SLICE_PRICES, API_URL } from "../types";
 import BurgerVisualization from "./BurgerVisualization";
 
 interface Props {
@@ -42,7 +42,7 @@ function Checkout({ slices, quantity, totalPrice, onBack, onOrderPlaced }: Props
 
     setSubmitting(true);
     try {
-      const res = await fetch("/api/orders", {
+      const res = await fetch(`${API_URL}/api/orders`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -63,8 +63,8 @@ function Checkout({ slices, quantity, totalPrice, onBack, onOrderPlaced }: Props
 
       toast.success("Order placed successfully!");
       onOrderPlaced();
-    } catch (err: any) {
-      toast.error(err.message || "Something went wrong");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message :  "Something went wrong");
     } finally {
       setSubmitting(false);
     }

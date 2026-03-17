@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { API_URL } from "../types";
 
 interface Order {
   _id: string;
@@ -21,7 +22,7 @@ function OrdersModal({ onClose }: Props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("/api/orders")
+    fetch(`${API_URL}/api/orders`)
       .then((res) => res.json())
       .then((data) => setOrders(data))
       .catch(() => setOrders([]))

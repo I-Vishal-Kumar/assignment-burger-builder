@@ -19,3 +19,5 @@ export const SLICE_COLORS: Record<SliceType, string> = {
 };
 
 export const PLATFORM_FEE = 5;
+
+export const API_URL = "https://assignment-burger-builder.onrender.com";
